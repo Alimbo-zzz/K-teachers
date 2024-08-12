@@ -5,7 +5,7 @@ import { Main, Preview, Header, Footer } from '@/templates';
 
 
 export default (props) => {
-	const [isPreview, setIsPreview] = useState(false)
+	const [isPreview, setIsPreview] = useState(true)
 	
 	return (<>
 		{isPreview ? <Preview clickBtn={() => setIsPreview(false)}/> : (
