@@ -1,0 +1,22 @@
+.wrapper {
+	overflow-x: hidden;
+	min-width: $min-width;
+	min-height: 100vh;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+
+	main{	flex: 1;	}
+}
+
+body{
+	font-size: 1vw;
+	background: hue('red');
+}
+
+[container] {
+	width: calc(100% - 16px);
+	margin: 0 auto;
+	max-width: 80vw;
+
+}

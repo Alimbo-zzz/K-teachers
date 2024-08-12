@@ -1,0 +1,14 @@
+html,body{
+	background: hue('light');
+	color: hue('dark');
+	font-family: 'Oswald', Arial, Helvetica, sans-serif;
+}
+
+
+::selection {
+	color: hue('light');
+	background: hue('red');
+}
+
+
+

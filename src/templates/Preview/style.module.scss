@@ -1,0 +1,75 @@
+@import '@/styles/global.scss';
+
+.wrap{
+	height: 100vh;
+	overflow: hidden;
+	background: url('/images/noize.png') no-repeat;
+	background-size: cover;
+	position: relative;
+	padding: 4vw 0;
+
+
+	[alt='book']{
+		position: absolute;
+		bottom: 0;right: 0;
+		width: 75vw;
+	}
+	[alt='pencils']{
+		position: absolute;
+		bottom: 0;right: 3vw;
+	}
+}
+
+.grid{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	height: 74.4vh;
+}
+
+
+.title{
+	font-size: 9.1vw;
+	font-weight: bold;
+	text-transform: uppercase;
+	line-height: 1;
+	max-width: fit-content;
+	font-family: 'Bebas-Nenue';
+	color: hue('gray');
+
+	span{
+		color: hue('red');
+		position: relative;
+		display: flex;
+		align-items: center;
+		gap: 0.2em;
+
+		&::after{
+			content: '';
+			width: 100%;
+			height: 0.1em;
+			background: currentColor;
+		}
+	}
+}
+
+
+.desc{
+	font-family: 'Roboto';
+	font-size: 1.2vw;
+	line-height: 1.2;
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	max-width: 24vw;
+	justify-self: end;
+	text-align: right;
+	white-space: pre-line;
+}
+
+
+.btn{
+	align-self: end;
+}
+
+
+

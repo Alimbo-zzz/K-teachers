@@ -1,0 +1,67 @@
+@use "sass:map";
+
+// ------- funcs -------
+
+@function screen($name: "desktop"){
+	$screens: (
+		"desktop": 1220px,
+		"laptop": 1024px,
+		"tablet": 768px,
+		"phone": 480px,
+	);
+	
+	@return map.get($screens, $name) 
+}; 
+
+
+@function hue($name: "b", $a: 1){
+
+	$colors: (
+		"b": hsla(0, 0%, 0%, $a),
+		"w": hsla(0, 0%, 100%, $a),
+		"white": hsla(49, 100%, 98%, $a),
+		"gray": hsla(0, 0%, 44%, $a),
+		"red": hsla(9, 67%, 51%, $a),
+		"dark": hsla(140, 10%, 23%, $a),
+		"swamp": hsla(102, 15%, 33%, $a),
+		"light": hsla(46, 57%, 95%, $a),
+	);
+	
+
+	@return map.get($colors, $name) 
+};
+
+
+
+// -------- vars --------
+
+$min-width: 360px;
+$max-width: 1324px;
+
+$box-bg: color-mix(in srgb, hue('bg'), #fff 7%);
+$radius: 40px;
+
+
+// ------ mixins ---------
+
+@mixin a-click($e: 0.3s ){
+	transition: all $e, scale 0.15s cubic-bezier(.65,1.99,.7,1.28);
+	&:active{	scale: 0.9; }
+}
+
+
+
+@mixin hover {
+	&:not([disabled]):hover {
+		@content;
+	}
+}
+
+@mixin square($size) {
+	width: $size;
+	min-width: $size;
+	max-width: $size;
+	height: $size;
+	min-height: $size;
+	max-height: $size;
+}
