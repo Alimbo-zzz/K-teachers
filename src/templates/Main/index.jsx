@@ -1,38 +1,38 @@
 import React from 'react';
 import cls from './style.module.scss'
 import clx from 'classnames'
+import { PersonCard, LetterSelect } from '@/components';
 
-export default ({className}) => {
+const personsData = [
+	{
+		link: '/person/person-1', 
+		img: 'person-1.png', 
+		title: 'Серков', 
+		date: [1920, 1970]
+	},
+	{
+		link: '/person/person-2', 
+		img: 'person-2.png', 
+		title: 'Столпнев', 
+		date: [1920]
+	},
+]
+
+const selectData = [
+	{label: 'Зайцев Николай Иванович', link: '/person/person-1'},
+	{label: 'Зайцев Алексей Федорович', link: '/person/person-1'},
+	{label: 'Замалеев Нури Залялеевич', link: '/person/person-1'},
+	{label: 'Зекцер Петр Маркович', link: '/person/person-1'},
+]
+
+
+export default ({className, type, activeLetterIndex, letters}) => {
 	
 	return (<>
 		<div className={clx(cls.wrap, className)}>
-			<div container='' className={cls.cont}>
-				<div className={cls.card}>
-					<div className={cls.card__person}>
-						<img src="/images/person-1.png" alt="person" />
-					</div>
-					<h4 className={cls.card__name}>Абузаров</h4>
-					<div className={cls.card__date}>
-						<span data-line />
-						<span data-name='date'>1920</span>
-						<span data-line='mid'   />
-						<span data-name='date'>1970</span>
-						<span data-line />
-					</div>
-				</div>
-				<div className={cls.card}>
-					<div className={cls.card__person}>
-						<img src="/images/person-2.png" alt="person" />
-					</div>
-					<h4 className={cls.card__name}>Ахметшин</h4>
-					<div className={cls.card__date}>
-						<span data-line />
-						<span data-name='date'>?</span>
-						<span data-line='mid'   />
-						<span data-name='date'>1970</span>
-						<span data-line />
-					</div>
-				</div>
+			<div type={type} container='' className={cls.cont}>
+				{type == 'list' && personsData.map((el, i) => <PersonCard {...el} key={i} />)}
+				{type == 'letters' && letters.map((el, i) => <LetterSelect letter={el} data={selectData} key={i} />)}
 			</div>
 		</div>
 	</>);

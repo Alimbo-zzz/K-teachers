@@ -1,0 +1,165 @@
+@import '@/styles/global.scss';
+$p: 2.4vw;
+$b: 0.2em solid hue('dark');
+
+.wrap{
+	position: relative;
+	padding-top: 2vw;
+	background: url('/images/noize.png');
+}
+
+
+
+.cont{
+	position: relative;
+	display: flex;
+	flex-direction: column;
+
+	&__info{
+		display: grid;
+		grid-template-columns: 40% 1fr;
+		border-bottom: $b;
+		border-top: $b;
+	}
+
+
+	&__col{
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+}
+
+.content{
+	padding: $p;
+	padding-right: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 1vw;
+
+
+	h1{
+		color: hue('swamp');
+		font-size: 5vw;
+		font-weight: 600;
+		line-height: 1.2;
+		margin-top: -0.2em;
+	}
+
+	h3{
+		color: hue('red');
+		font-weight: 300;
+		font-size: 4vw;
+		display: flex;
+		align-items: center;
+		gap: 0.2em;
+		font-family: 'Roboto';
+
+
+		[line]{
+			width: 100%;
+			background: currentColor;
+			height: 0.2vw;
+		}
+
+		[line='1']{
+			width: 40%;
+		}
+	}
+
+	p{
+		font-family: 'Roboto';
+		font-size: 1vw;
+	}
+
+	&__text{
+		overflow: hidden;
+		overflow-y: auto;
+		height: 100%;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 1vw;
+	}
+}
+
+
+
+.preview{
+	position: relative;
+	border-right: $b;
+
+	[alt='person']{
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	[alt='decor']{
+		position: absolute;
+		left: 0;bottom: 0;
+		height: calc(100% - 5vw);
+		translate: -85% -2vw;
+	}
+
+
+	&__person{
+		padding: $p;
+		padding-left: 0;
+		position: relative;
+		aspect-ratio: 2/3;
+	}
+	
+	&__info{
+		display: flex;
+		align-items: center;
+		color: hue('swamp');
+		padding: $p;
+		padding-left: 0;
+		gap: 1em;
+		border-top: $b;
+
+		[name='line']{
+			width: 100%;
+			height: 0.15em;
+			background: currentColor;
+		}
+
+		[name='text']{
+			font-size: 3vw;
+			text-transform: uppercase;
+			font-family: 'Roboto';
+			font-weight: 300;
+			line-height: 1;
+		}
+	}
+}
+
+
+
+.col{
+	display: flex;
+	flex-direction: column;
+	gap: 0.5vw;
+	padding: $p;
+	border-right: $b;
+
+	&:first-child{
+		padding-left: 0;
+	}
+
+	&:last-child{
+		padding-right: 0;
+		border: none;
+	}
+
+	[alt='preview']{
+		width: 100%;
+	}
+
+	p{
+		font-family: 'Roboto';
+		font-weight: 300;
+		font-size: 1.2vw;
+	}
+}

@@ -5,62 +5,14 @@
 
 .cont{
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	gap: 1vw;
-}
 
-
-.card{
-	max-width: 18vw;
-	aspect-ratio: 2/3;
-	text-align: center;
-	background: hue('white');
-	border: 0.2em solid hue('dark');
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	padding: 1vw 0;
-
-	&__person{
-		padding: 0 1vw;
+	&[type='list']{
+		grid-template-columns: repeat(5, 1fr);
+		gap: 1vw;
 	}
-
-	&__name{
-		font-size: 1.6vw;
-		text-transform: uppercase;
-		color: hue('swamp');
-		line-height: 1.5;
-		margin-top: 0.5em;
-		padding: 0 1vw;
-	}
-
-
-	&__date{
-		font-family: 'Roboto';
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		gap: 0.4em;
-		font-size: 1.2em;
-		line-height: 1;
-		margin-top: 0.2em;
-
-		[data-line]{
-			width: 100%;
-			height: 0.15vw;
-			background: currentColor;
-		}
-
-		[data-line='mid']{
-			width: 50%;
-		}
-
-	}
-
-	[alt='person']{
-		width: 100%;
-		aspect-ratio: 3/4;
-		object-fit: cover;
-		filter: grayscale(100%);
+	&[type='letters']{
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2vw;
 	}
 }
+
