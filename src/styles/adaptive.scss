@@ -17,6 +17,9 @@ body{
 [container] {
 	width: calc(100% - 16px);
 	margin: 0 auto;
-	max-width: 80vw;
+	max-width: 84vw;
 
+	@include isMobile{
+		max-width: 90vw;
+	}
 }

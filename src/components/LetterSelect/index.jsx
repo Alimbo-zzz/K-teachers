@@ -1,8 +1,11 @@
 'use client'
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import cls from './style.module.scss'
 import clx from 'classnames'
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useActions } from '@/hooks';
+import { useSelector } from 'react-redux';
 
 
 const IconDropdown = <svg width="20" height="11" viewBox="0 0 20 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -13,6 +16,20 @@ const IconDropdown = <svg width="20" height="11" viewBox="0 0 20 11" fill="none"
 // data=[{label:'', link: ''}]
 export default ({className='', letter='A', data=[]}) => {
 	const [isOpen, setIsOpen] = useState(false);
+	const {setContentVisible, setActiveLetterIndex} = useActions();
+	const {activeLetterIndex, letters} = useSelector(state => state.base)
+	const timeoutRef = useRef();
+	const router = useRouter()
+
+	const changePage = (path='/') => {
+		clearTimeout(timeoutRef.current);
+		setContentVisible(false);
+		let index = letters.findIndex(el => el == letter);
+		setActiveLetterIndex(index)
+		timeoutRef.current = setTimeout(() => {
+			router.push(path + `?letter-index=${index}`)
+		}, 800);
+	}
 
 	return (<>
 		<div open={isOpen} className={clx(cls.wrap, className)}>
@@ -24,9 +41,9 @@ export default ({className='', letter='A', data=[]}) => {
 			</div>
 			<ul open={isOpen} className={cls.list}>
 				{data.map((el, i) => 
-					<Link href={el.link} className={cls.item} key={i}>
+					<div onClick={() => changePage(el.link)} className={cls.item} key={i}>
 						{el.label}
-					</Link>
+					</div>
 				)}				
 			</ul>
 		</div>

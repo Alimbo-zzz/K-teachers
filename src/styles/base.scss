@@ -2,6 +2,12 @@ html,body{
 	background: hue('light');
 	color: hue('dark');
 	font-family: 'Oswald', Arial, Helvetica, sans-serif;
+	overflow-x: hidden;
+
+	@include isMobile{
+		font-size: 4vw;
+	}
+
 }
 
 

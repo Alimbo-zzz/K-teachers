@@ -1,0 +1,22 @@
+@import '@/styles/global.scss';
+
+.swiper-pagination{
+	display: none;
+}
+
+@include isMobile{
+	
+	.swiper{
+		padding-bottom: 8vh;
+		margin-top: 6vh;
+	}
+
+	.swiper-pagination{
+		display: block;
+		top: auto !important;
+		bottom: 0;
+		span{
+			background: hue('red') !important;
+		}
+	}
+}

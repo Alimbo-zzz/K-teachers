@@ -1,12 +1,13 @@
 @import '@/styles/global.scss';
 
-$line-w: 0.21vw;
+$line-w: 0.21em;
 
 .wrap{
 	background: hue('light');
 	color: hue('dark');
-	border: $line-w solid;
+	border: solid;
 	align-self: start;
+	@include border-w;
 }
 
 
@@ -28,21 +29,23 @@ $line-w: 0.21vw;
 	}
 
 	[name='letter']{
-		font-size: 3vw;
+		font-size: 3em;
 		line-height: 0.6;
 		color: hue('red');
 		text-transform: uppercase;
 	}
 
 	[data-line]{
-		height: $line-w;
-		background: hue('dark');
+		color: hue('dark');
 		width: 100%;
+		border-bottom: solid;		
+		@include border-w;
 	}
 	[data-line='1']{
-		height: $line-w;
 		background: hue('dark');
-		width: 2vw;
+		width: 2em;
+		border-bottom: solid;
+		@include border-w;
 	}
 }
 
@@ -62,7 +65,7 @@ $line-w: 0.21vw;
 
 
 .item{
-	font-size: 1.2vw;
+	font-size: 1.2em;
 	padding: 0.3em 0;
 	font-weight: 300;
 	font-family: 'Roboto';
@@ -71,6 +74,7 @@ $line-w: 0.21vw;
 	gap: 0.5em;
 	color: inherit;
 	transition: 0.3s;
+	cursor: pointer;
 
 	&:hover{
 		color: hue('red');
@@ -78,7 +82,7 @@ $line-w: 0.21vw;
 
 	&::before{
 		content: '';
-		width: 0.7vw;
+		width: 0.7em;
 		background: currentColor;
 		aspect-ratio: 1/1;
 	}

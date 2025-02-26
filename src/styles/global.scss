@@ -31,6 +31,23 @@
 	@return map.get($colors, $name) 
 };
 
+@function a-size($a: 1){
+	@return calc((1vw + 1vh)* $a);
+}
+
+
+@mixin isMobile(){
+	@media(max-width: screen('tablet')){
+		@content;
+	}
+}
+
+@mixin border-w(){
+	border-width: 2.5px;
+	@include isMobile{
+		border-width: 2px;
+	}
+}
 
 
 // -------- vars --------
@@ -41,11 +58,10 @@ $max-width: 1324px;
 $box-bg: color-mix(in srgb, hue('bg'), #fff 7%);
 $radius: 40px;
 
-
 // ------ mixins ---------
 
-@mixin a-click($e: 0.3s ){
-	transition: all $e, scale 0.15s cubic-bezier(.65,1.99,.7,1.28);
+@mixin a-click($e: auto ){
+	transition: $e, scale 0.15s cubic-bezier(.65,1.99,.7,1.28);
 	&:active{	scale: 0.9; }
 }
 

@@ -2,8 +2,11 @@
 import useActions from './useActions';
 import useDebounce from './useDebounce';
 import usePopap from './usePopap';
+import useMedia from './useMedia';
+import usePopapGallery from './usePopapGallery';
 
 export {
- useActions, useDebounce,
- usePopap,
+	useDebounce,
+  usePopap, useMedia,
+	usePopapGallery, useActions,
 }

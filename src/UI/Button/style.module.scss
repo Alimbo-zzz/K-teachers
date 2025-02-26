@@ -14,11 +14,22 @@
 	cursor: pointer;
 	font-family: 'Roboto';
 	user-select: none;
-	border: 0.2em solid hue('dark');
+	border: solid hue('dark');
+	
+	@include border-w;
+
+	@include isMobile{
+		font-size: 3.5vw;
+	}
 
 	&[theme='light']{
 		color: hue('dark');
 		background: hue('white');
+	}
+	&[theme='red']{
+		color: hue('white');
+		background: hue('red');
+		border-color: hue('red')
 	}
 
 

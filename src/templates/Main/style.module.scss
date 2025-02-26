@@ -1,18 +1,81 @@
 @import '@/styles/global.scss';
 
 .wrap{
+	background: url('/images/table-fone.png') center top / 100%; 
 }
 
 .cont{
 	display: grid;
+	padding: 2vh 10vw;
+
+	@include isMobile{
+		padding: 2vh 0;
+	}
+	
 
 	&[type='list']{
-		grid-template-columns: repeat(5, 1fr);
-		gap: 1vw;
+		grid-template-columns: repeat(4, 1fr);
+		grid-auto-rows: 25vw;
+		gap: 1em;
+		
+
+		@include isMobile{		
+			grid-template-columns: repeat(2, 1fr);
+			font-size: 2.45vw;
+			padding: 2em 0;
+			grid-auto-rows: 76vw;
+		}
 	}
 	&[type='letters']{
 		grid-template-columns: repeat(3, 1fr);
-		gap: 2vw;
+		gap: 2em;
+		padding: 2em 0;
+
+		@include isMobile{		
+			display: flex;
+			flex-direction: column;
+			padding: 2em 0;
+		}
+	}
+
+
+	&[data-grid='false']{
+		display: flex;
 	}
 }
 
+
+.row{
+	display: flex;
+	flex-direction: column;
+	gap: 2vw;
+	width: 100%;
+}
+
+.select{
+	width: 100%;
+}
+
+
+.wrap{
+	transition: opacity 0.3s;
+	opacity: 0;
+}
+
+.wrap[animate='true']{
+	transition-delay: 500ms;
+	opacity: 1;
+}
+
+.empty{
+	h4{
+		font-size: 1.6em;
+		margin-bottom: 0.5em;
+	}
+	p{
+		font-family: 'Roboto';
+		font-size: 1.2em;
+		line-height: 1.2;
+	}
+	a{color: currentColor;}
+}

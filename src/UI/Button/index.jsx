@@ -4,7 +4,7 @@ import clx from 'classnames'
 import cls from './style.module.scss'
 
 
-export default ({href=null, theme='light', w='fit-content', css={}, className='', children, type='button', ...props }) => {
+export default ({href=null, theme='dark', w='fit-content', css={}, className='', children, type='button', ...props }) => {
 	
 	
 	let ops = {

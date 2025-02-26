@@ -1,11 +1,21 @@
 @import '@/styles/global.scss';
-$p: 2.4vw;
-$b: 0.2em solid hue('dark');
+$p: 2.4em;
+$b: solid hue('dark');
+$p-mb: 5vw;
+
 
 .wrap{
 	position: relative;
-	padding-top: 2vw;
 	background: url('/images/noize.png');
+
+	@include isMobile {
+		background-size: 250%;
+	}
+}
+
+
+.err{
+	padding: 40px 0;
 }
 
 
@@ -14,73 +24,128 @@ $b: 0.2em solid hue('dark');
 	position: relative;
 	display: flex;
 	flex-direction: column;
+	
+	@include isMobile{
+		border-right: $b;
+		border-left: $b;
+		padding-bottom: 10vh;
+		@include border-w;
+	}
+
 
 	&__info{
 		display: grid;
 		grid-template-columns: 40% 1fr;
+		grid-template-rows: min-content 1fr;
 		border-bottom: $b;
-		border-top: $b;
-	}
+		@include border-w;
+		// border-top: $b;
 
-
-	&__col{
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		@include isMobile{
+			display: flex;
+			flex-direction: column;
+			border: none;
+		}
 	}
 
 }
 
-.content{
+
+.name{
 	padding: $p;
 	padding-right: 0;
-	display: flex;
-	flex-direction: column;
-	gap: 1vw;
+	padding-bottom: 0;
+	grid-column: 2;
+	grid-row: 1;
+	position: relative;
 
+
+	&::before{
+		content: '';
+		position: absolute;
+		width: 18vw; height: 18vw;
+		z-index: 10;
+		right: -12%;top: 8%;
+		background: url('/images/desktop.png') no-repeat center center / cover;
+	}
+
+	@include isMobile{
+		padding: $p-mb;
+		order: 1;
+		padding-bottom: 0;
+
+			
+		&::before{
+			display: none;
+		}
+	}
 
 	h1{
 		color: hue('swamp');
-		font-size: 5vw;
+		font-size: 5em;
 		font-weight: 600;
 		line-height: 1.2;
 		margin-top: -0.2em;
+		text-transform: uppercase;
+		max-width: 36vw;
+
+		@include isMobile{
+			font-size: 1.5em;
+			max-width: 100%;
+		}
 	}
 
 	h3{
 		color: hue('red');
 		font-weight: 300;
-		font-size: 4vw;
+		font-size: 3.5em;
 		display: flex;
 		align-items: center;
 		gap: 0.2em;
 		font-family: 'Roboto';
 
+		@include isMobile{
+			font-size: 1.6em;
+		}
 
 		[line]{
 			width: 100%;
-			background: currentColor;
-			height: 0.2vw;
+			border-bottom: solid;
+			@include border-w;
 		}
 
 		[line='1']{
 			width: 40%;
 		}
 	}
+}
+
+.content{
+	padding: $p;
+	padding-right: 0;
+	gap: 1em;	
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	grid-column: 2;
+	grid-row: 2;
+	white-space: pre-line;
+	flex: 1;
+	font-family: 'Roboto';
+	
+	@include isMobile{
+		padding: $p-mb;
+		border-bottom: $b;
+		@include border-w;
+		order: 3;
+	}
+
 
 	p{
 		font-family: 'Roboto';
-		font-size: 1vw;
+		font-size: 1em;
 	}
 
-	&__text{
-		overflow: hidden;
-		overflow-y: auto;
-		height: 100%;
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		gap: 1vw;
-	}
 }
 
 
@@ -88,6 +153,14 @@ $b: 0.2em solid hue('dark');
 .preview{
 	position: relative;
 	border-right: $b;
+	grid-column: 1;
+	grid-row: span 2;
+	@include border-w;
+
+	@include isMobile{
+		border: none;
+		order: 2;
+	}
 
 	[alt='person']{
 		width: 100%;
@@ -98,8 +171,12 @@ $b: 0.2em solid hue('dark');
 	[alt='decor']{
 		position: absolute;
 		left: 0;bottom: 0;
-		height: calc(100% - 5vw);
-		translate: -85% -2vw;
+		height: 50%;
+		translate: -28% 1.4em;
+
+		@include isMobile{
+			display: none;
+		}
 	}
 
 
@@ -108,6 +185,11 @@ $b: 0.2em solid hue('dark');
 		padding-left: 0;
 		position: relative;
 		aspect-ratio: 2/3;
+
+		@include isMobile{
+			aspect-ratio: 2.4/3;
+			padding: $p-mb;
+		}
 	}
 	
 	&__info{
@@ -118,15 +200,24 @@ $b: 0.2em solid hue('dark');
 		padding-left: 0;
 		gap: 1em;
 		border-top: $b;
+		@include border-w;
+
+		@include isMobile{
+			padding: $p-mb;
+			font-size: 0.6em;
+			border-top: $b;
+			border-bottom: $b;
+			@include border-w;
+		}
 
 		[name='line']{
 			width: 100%;
-			height: 0.15em;
-			background: currentColor;
+			border-bottom: solid;			
+			@include border-w;
 		}
 
 		[name='text']{
-			font-size: 3vw;
+			font-size: 3em;
 			text-transform: uppercase;
 			font-family: 'Roboto';
 			font-weight: 300;
@@ -137,21 +228,48 @@ $b: 0.2em solid hue('dark');
 
 
 
+.rows{
+	display: flex;
+	gap: $p;
+
+	&__line{
+		min-height: 100%;
+		border-right: $b;
+		display: block;
+		@include border-w;
+
+		
+		@include isMobile{
+			display: none;
+		}
+	}
+
+	&__item{
+		flex: 1;
+		padding: $p 0;
+		display: flex;
+		flex-direction: column;
+		gap: $p;
+	}
+	
+	@include isMobile{
+		flex-direction: column;
+		padding: $p-mb;
+	}
+	
+}
+
+
+
 .col{
 	display: flex;
 	flex-direction: column;
-	gap: 0.5vw;
-	padding: $p;
-	border-right: $b;
+	gap: 0.5em;
 
-	&:first-child{
-		padding-left: 0;
+	&__img{
+		cursor: pointer;
 	}
 
-	&:last-child{
-		padding-right: 0;
-		border: none;
-	}
 
 	[alt='preview']{
 		width: 100%;
@@ -160,6 +278,18 @@ $b: 0.2em solid hue('dark');
 	p{
 		font-family: 'Roboto';
 		font-weight: 300;
-		font-size: 1.2vw;
+		font-size: 1.2em;
 	}
 }
+
+
+.wrap{
+	transition: opacity 0.6s;
+	opacity: 0;
+}
+
+
+.wrap[animate='true']{
+	opacity: 1;
+}
+

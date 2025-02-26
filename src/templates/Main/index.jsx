@@ -1,38 +1,55 @@
-import React from 'react';
+'use client'
+import React, { useEffect, useState } from 'react';
 import cls from './style.module.scss'
 import clx from 'classnames'
 import { PersonCard, LetterSelect } from '@/components';
-
-const personsData = [
-	{
-		link: '/person/person-1', 
-		img: 'person-1.png', 
-		title: 'Серков', 
-		date: [1920, 1970]
-	},
-	{
-		link: '/person/person-2', 
-		img: 'person-2.png', 
-		title: 'Столпнев', 
-		date: [1920]
-	},
-]
-
-const selectData = [
-	{label: 'Зайцев Николай Иванович', link: '/person/person-1'},
-	{label: 'Зайцев Алексей Федорович', link: '/person/person-1'},
-	{label: 'Замалеев Нури Залялеевич', link: '/person/person-1'},
-	{label: 'Зекцер Петр Маркович', link: '/person/person-1'},
-]
+import { useActions, useMedia } from '@/hooks';
+import { useSelector } from 'react-redux';
+import { arrayRows } from '@/scripts';
+import { useRouter } from 'next/navigation';
 
 
-export default ({className, type, activeLetterIndex, letters}) => {
+
+
+export default ({className}) => {
+	const {windowWidth} = useMedia();
+	const {personList, searchList, contentType, activeLetterIndex, letters} = useSelector(state => state.base);
+	const letterRows =  arrayRows(letters, 3);
+	const {setContentVisible} = useActions();
+	const {contentVisible} = useSelector(state => state.base);
+	const router = useRouter();
+
+	useEffect(()=>{
+		if(activeLetterIndex === null) router.push('/list');
+	}, [activeLetterIndex])
+
+
 	
+	useEffect(()=>{setContentVisible(true)}, [])
+
+	const getItemsByLetter = (letter) => personList.filter(el => el.lastname.split('').shift().toLowerCase() == letter.toLowerCase());
+	const setSelectData = (letter) => getItemsByLetter(letter).map(el => ({label: `${el.lastname} ${el.firstname} ${el.patronymic}`, link: `/person/${el._id}`}));
+
+
 	return (<>
-		<div className={clx(cls.wrap, className)}>
-			<div type={type} container='' className={cls.cont}>
-				{type == 'list' && personsData.map((el, i) => <PersonCard {...el} key={i} />)}
-				{type == 'letters' && letters.map((el, i) => <LetterSelect letter={el} data={selectData} key={i} />)}
+		<div animate={String(contentVisible)} className={clx(cls.wrap, className)}>
+			<div type= {contentType} data-grid={searchList.length ? 'true' : 'false'} container='' className={cls.cont}>
+				{(contentType == 'list' || windowWidth < 765) && searchList.map((el, i) => <PersonCard index={i} {...el} key={el._id} />)}
+				{(contentType == 'list' && !searchList.length) && 
+					<div className={cls.empty}>
+						<h4>Мы еще собираем информацию об этих героях.</h4>
+						<p>Возможно, вы можете нам помочь?</p>
+						<p>Пишите на почту: <a href="mailto:licey.182@tatar.ru">licey.182@tatar.ru</a></p>
+					</div>
+				}
+				{contentType == 'letters' && (
+					windowWidth > 765 &&
+					letterRows.map((letters, i) => 
+						<div className={cls.row} key={i}>
+							{letters.map((el, i) => setSelectData(el).length > 0 && <LetterSelect className={cls.select} letter={el} index={i} data={setSelectData(el)} key={i} />)}
+						</div>	
+					)
+				)}
 			</div>
 		</div>
 	</>);
