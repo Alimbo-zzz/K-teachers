@@ -10,7 +10,9 @@ import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 const Popap = ({isOpen, setIsOpen, swiper, setSwiper, swiperRef, slides}) => {
-
+	const activeIndex = swiper?.activeIndex;
+	const isBegin = activeIndex == 0;
+	const isEnd =  activeIndex + 1 == slides.length; 
 
 	const swiperOps = {
 		onSwiper: (e) => {swiperRef.current = e; setSwiper({...e});},
@@ -28,8 +30,8 @@ const Popap = ({isOpen, setIsOpen, swiper, setSwiper, swiperRef, slides}) => {
 	return (<>
 		<div data-active={isOpen}  className={cls.wrap} >
 			<div className={cls.cont}>				
-				<button disabled={swiper?.isBeginning} type='button' data-btn='prev' onClick={prevSlide} >{<ArrowLeftIcon/>}</button>
-				<button disabled={swiper?.isEnd} type='button' data-btn='next' onClick={nextSlide} >{<ArrowRightIcon/>}</button>
+				<button disabled={isBegin} type='button' data-btn='prev' onClick={prevSlide} >{<ArrowLeftIcon/>}</button>
+				<button disabled={isEnd} type='button' data-btn='next' onClick={nextSlide} >{<ArrowRightIcon/>}</button>
 				<button type='button' data-btn='close' onClick={closeGallery}>{<CloseIcon/>}</button>
 				<Swiper {...swiperOps} className={cls.slider}>
 					{slides.map((el, i) => 

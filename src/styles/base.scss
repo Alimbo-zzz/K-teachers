@@ -7,9 +7,28 @@ html,body{
 	@include isMobile{
 		font-size: 4vw;
 	}
-
+	// scrollbar-gutter: stable;
 }
 
+
+body{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	position: relative;
+
+	transition: background 0.3s;
+
+	&[data-bg=list]{
+		background: url('/images/full-fone.jpg') center center / cover;
+	}
+}
+
+
+.main{
+	// height: 100%;
+	flex: 1;
+}
 
 ::selection {
 	color: hue('light');

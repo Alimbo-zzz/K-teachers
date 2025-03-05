@@ -6,7 +6,7 @@
 .breadcrumbs{
 	position: sticky;
 	top: 0;
-	z-index: 10;
+	z-index: 20;
 	background: hue('light');
 	margin-bottom: 0.2vw;
 	padding-top: 0.5em;
@@ -27,6 +27,8 @@
 
 .wrap{
 	position: relative;
+	width: 100%;
+	z-index: 10;
 
 	&[data-page='/list']{
 		position: sticky;

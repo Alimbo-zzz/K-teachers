@@ -1,6 +1,10 @@
 @import '@/styles/global.scss';
 
 .wrap{
+	width: 100%;
+	position: relative;
+	z-index: 10;
+	background-color: hue('light');
 
 	@include isMobile{		
 

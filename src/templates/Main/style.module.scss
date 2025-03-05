@@ -1,7 +1,9 @@
 @import '@/styles/global.scss';
 
 .wrap{
-	background: url('/images/table-fone.png') center top / 100%; 
+	flex: 1;
+	height: 100%;
+	// background: url('/images/table-fone.png') center top / 100%; 
 }
 
 .cont{
