@@ -23,6 +23,11 @@ export default ({className}) => {
 		if(activeLetterIndex === null) router.push('/list');
 	}, [activeLetterIndex])
 
+	useEffect(()=>{
+		if(contentType == 'list' && !searchList.length) document.body.dataset.bg = 'lines';
+		else document.body.dataset.bg = 'list';;
+	}, [contentType, searchList])
+
 
 	
 	useEffect(()=>{setContentVisible(true)}, [])

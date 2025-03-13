@@ -33,7 +33,10 @@ $a-duration: translate 1s cubic-bezier(.65,-0.45,.35,1.33);
 	img[alt=mobile]{
 		display: none;
 	
-		@include isMobile{display: block}
+		@include isMobile{
+			display: block;
+			object-position: 60% bottom;
+		}
 	}
 
 

@@ -22,6 +22,9 @@ body{
 	&[data-bg=list]{
 		background: url('/images/full-fone.jpg') center center / cover;
 	}
+	&[data-bg=lines]{
+		background: url('/images/lines.png') center center / cover;
+	}
 }
 
 
