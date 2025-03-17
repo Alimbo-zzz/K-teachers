@@ -35,7 +35,8 @@ $a-duration: translate 1s cubic-bezier(.65,-0.45,.35,1.33);
 	
 		@include isMobile{
 			display: block;
-			object-position: 60% bottom;
+			object-position: 60% top;
+			// object-position: right top;
 		}
 	}
 

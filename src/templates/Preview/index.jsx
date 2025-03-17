@@ -40,8 +40,9 @@ export default (props) => {
 
 
   useEffect(() => {
-    let grayImg = '/images/main-fone.png';
-    let colorImg = '/images/main-fone-active.png';
+    if(!THREE) return 
+    let colorImg  = '/images/main-fone.png';
+    let grayImg = '/images/main-fone-active.png';
     let coords = [0, 0]
     let intervalIsBlock = false;
     let viewportAspect = window.innerWidth / window.innerHeight;
